@@ -32,8 +32,9 @@ const Register = () => {
 
 
   return (
-    <div className="login">
-      <div className="lContainer">
+    <div className="login1">
+      <div className="lContainer1">
+      <p className="title">Register Here</p>
         <input
           type="text"
           placeholder="username"
@@ -72,3 +73,4 @@ const Register = () => {
 };
 
 export default Register;
+
