@@ -66,11 +66,11 @@ const Header = ({ type }) => {
             <FontAwesomeIcon icon={faBed} />
             <span>Stays</span>
           </div>
-          <div className="headerListItem">
+          {/* <div className="headerListItem">
             <FontAwesomeIcon icon={faPlane} />
             <span>Flights</span>
-          </div>
-          <div className="headerListItem">
+          </div> */}
+          {/* <div className="headerListItem">
             <FontAwesomeIcon icon={faCar} />
             <span>Car rentals</span>
           </div>
@@ -81,17 +81,17 @@ const Header = ({ type }) => {
           <div className="headerListItem">
             <FontAwesomeIcon icon={faTaxi} />
             <span>Airport taxis</span>
-          </div>
+          </div> */}
         </div>
         {type !== "list" && (
           <>
             <h1 className="headerTitle">
               A lifetime of discounts? It's Genius.
             </h1>
-            <p className="headerDesc">
+            {/* <p className="headerDesc">
               Get rewarded for your travels – unlock instant savings of 10% or
               more with a free Lamabooking account
-            </p>
+            </p> */}
             {!user && <button className="headerBtn">Sign in / Register</button>}
             <div className="headerSearch">
               <div className="headerSearchItem">
