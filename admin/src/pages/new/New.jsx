@@ -25,9 +25,7 @@ const New = ({ inputs, title }) => {
         data,
         {
           withCredentials: false,
-          headers: {
-            origin: "http://localhost:3000"
-          }
+          
         }
         
       );

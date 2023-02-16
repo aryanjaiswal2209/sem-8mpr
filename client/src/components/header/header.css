@@ -1,5 +1,9 @@
 .header {
-  background-color: #003580;
+/* background: rgb(2,0,36); */
+/* background: linear-gradient(90deg, rgba(23,10,238,1) 0%, rgba(190,108,172,1) 0%, rgba(0,147,255,1) 100%); */
+background-color: #096ab1;
+
+  /* background-color: #003580; */
   color: white;
   display: flex;
   justify-content: center;
@@ -100,29 +104,36 @@
 }
 
 .optionItem {
-  width: 200px;
+  width: 250px;
   display: flex;
   justify-content: space-between;
-  margin: 10px;
+  margin: 8px;
 }
 
 .optionCounter {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-size: 12px;
   color: black;
 }
 
 .optionCounterButton {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border: 1px solid #0071c2;
   color: #0071c2;
+  top: 0;
   cursor: pointer;
   background-color: white;
+  
 }
 
 .optionCounterButton:disabled {
   cursor: not-allowed;
+}
+
+.operator{
+  justify-content: center;
+  align-items: center;
 }

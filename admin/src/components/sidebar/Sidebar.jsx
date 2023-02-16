@@ -51,10 +51,12 @@ const Sidebar = () => {
               <span>Rooms</span>
             </li>
           </Link>
+          <Link to="/requests">
           <li>
             <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
+            <span>Requests</span>
           </li>
+          </Link>
           <p className="title">USEFUL</p>
           <li>
             <InsertChartIcon className="icon" />

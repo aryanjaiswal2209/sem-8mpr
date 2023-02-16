@@ -2,6 +2,7 @@ import { HiInformationCircle } from "react-icons/hi";
 import React, {useRef } from "react";
 import Webcam from "react-webcam";
 import './form.css';
+import axios from "../../axios"
 
 const videoConstraints = {
   width: 440,
@@ -12,6 +13,9 @@ const videoConstraints = {
 const Form = () => {
   const webcamRef = useRef(null);
   const [url, setUrl] = React.useState(null);
+  const [selectedFile, setSelectedFile] = React.useState(null);
+  const [aadharNumber, setaadharNumber] = React.useState("");
+  const [panNumber, setpanNumber] = React.useState("");
 
   const capturePhoto = React.useCallback(async () => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -22,17 +26,41 @@ const Form = () => {
     console.log(e);
   };
 
-  
+  const handleFileSelect = (event) => {
+    setSelectedFile(event.target.files[0])
+  }
+
+  const handleSubmit = async(event) => {
+    event.preventDefault()
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+    formData.append("aadharNumber", aadharNumber);
+    formData.append("panNumber", panNumber);
+    // console.log(formData.values());
+    try {
+      const response = await axios({
+        method: "post",
+        url: "/form/formData",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      console.log(response.data);
+    } catch(error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>    
       <div class="form-group">
 		    	<label for="exampleInputAadharCard">Aadhar Card No.</label>
-		    	<input type="text" class="form-control" id="exampleInputAadharCard" placeholder="Enter Your Aadhar Card No." name="exampleInputAadharCard"/>
+		    	<input type="text" value={aadharNumber} onChange={(e)=>{
+            setaadharNumber(e.target.value) 
+          }} class="form-control" id="exampleInputAadharCard" placeholder="Enter Your Aadhar Card No." name="exampleInputAadharCard"/>
           <div class="info">
           <HiInformationCircle/>
         <span class="extra-info">
-        A little column extra info. Aaand just a little bit more
+        Please Enter Correct Aadhar Card Number
         </span>
         {/* <span>Hover me!</span> */}
          </div>
@@ -40,11 +68,13 @@ const Form = () => {
 		  	</div>
         <div class="form-group1">
 		    	<label for="exampleInputPanCard">Pan Card No.</label>
-		    	<input type="text" class="form-control" id="exampleInputPanCard" placeholder="Enter Your Pan Card No." name="exampleInputPanCard"/>
+		    	<input type="text" value={panNumber} onChange={(e)=>{
+            setpanNumber(e.target.value) 
+          }} class="form-control" id="exampleInputPanCard" placeholder="Enter Your Pan Card No." name="exampleInputPanCard"/>
           <div class="info">
           <HiInformationCircle/>
         <span class="extra-info-pan">
-      Something additional
+        Please Enter Correct Pan Card Number
         </span>
         {/* <span>Hover me!</span> */}
          </div>
@@ -69,9 +99,10 @@ const Form = () => {
       <button class="Save">Save</button>
       </div>
       <div class="form-group">
-		    	<label for="exampleImageUpload">Upload your Image!</label>
-          <input type="file" multiple accept="image/*"  />
+		    	<label for="exampleImageUpload" >Upload your Image!</label>
+          <input type="file" multiple accept="image/*"  onChange={handleFileSelect} />
      </div>
+     <button class="Save" onClick={handleSubmit} >Submit</button>
     </div>
     </>
   );

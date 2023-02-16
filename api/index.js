@@ -8,6 +8,7 @@ import roomsRoute from "./routes/rooms.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import morgan from "morgan"
+import formRoute from "./routes/form.js"
 
 const app = express();
 dotenv.config();
@@ -30,12 +31,14 @@ app.use(cors({ origin: ["http://localhost:3001", "http://localhost:3000"], crede
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("dev"))
+app.use("/uploads", express.static("uploads"));
+// app.use()
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
-
+app.use("/api/form",formRoute)
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";

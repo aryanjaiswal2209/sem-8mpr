@@ -4,7 +4,8 @@ import {
   faCar,
   faPerson,
   faPlane,
-  faTaxi,
+  faPhotoFilm,
+  faHiking
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
@@ -62,36 +63,35 @@ const Header = ({ type }) => {
         }
       >
         <div className="headerList">
-          <div className="headerListItem active">
+          <div className="headerListItem">
             <FontAwesomeIcon icon={faBed} />
             <span>Stays</span>
           </div>
-          {/* <div className="headerListItem">
+          <div className="headerListItem">
             <FontAwesomeIcon icon={faPlane} />
-            <span>Flights</span>
-          </div> */}
-          {/* <div className="headerListItem">
+            <span>Explore</span>
+          </div>
+           <div className="headerListItem">
             <FontAwesomeIcon icon={faCar} />
-            <span>Car rentals</span>
+            <span>Travel</span>
           </div>
           <div className="headerListItem">
-            <FontAwesomeIcon icon={faBed} />
-            <span>Attractions</span>
+            <FontAwesomeIcon icon={faHiking} />
+            <span>Adventure</span>
           </div>
           <div className="headerListItem">
-            <FontAwesomeIcon icon={faTaxi} />
-            <span>Airport taxis</span>
-          </div> */}
+            <FontAwesomeIcon icon={faPhotoFilm} />
+            <span>Experience</span>
+          </div>
         </div>
         {type !== "list" && (
           <>
             <h1 className="headerTitle">
-              A lifetime of discounts? It's Genius.
+              Hotels for Better You
             </h1>
-            {/* <p className="headerDesc">
-              Get rewarded for your travels – unlock instant savings of 10% or
-              more with a free Lamabooking account
-            </p> */}
+            <p className="headerDesc">
+              Let Us be your Passport to the World 
+            </p>
             {!user && <button className="headerBtn">Sign in / Register</button>}
             <div className="headerSearch">
               <div className="headerSearchItem">
@@ -139,7 +139,7 @@ const Header = ({ type }) => {
                           className="optionCounterButton"
                           onClick={() => handleOption("adult", "d")}
                         >
-                          -
+                        -
                         </button>
                         <span className="optionCounterNumber">
                           {options.adult}

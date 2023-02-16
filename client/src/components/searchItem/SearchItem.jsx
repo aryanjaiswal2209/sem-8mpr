@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import "./searchItem.css";
-
+import { faRupee, faIndianRupeeSign } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const SearchItem = ({ item }) => {
   return (
     <div className="searchItem">
       <img src={item.photos[0]} alt="" className="siImg" />
       <div className="siDesc">
         <h1 className="siTitle">{item.name}</h1>
-        <span className="siDistance">{item.distance}m from center</span>
+        {/* <span className="siDistance">{item.distance}m from center</span> */}
         <span className="siTaxiOp">Free airport taxi</span>
         <span className="siSubtitle">
           Studio Apartment with Air conditioning
@@ -24,7 +25,11 @@ const SearchItem = ({ item }) => {
           <button>{item.rating}</button>
         </div>}
         <div className="siDetailTexts">
-          <span className="siPrice">${item.cheapestPrice}</span>
+          <div>
+          {/* <FontAwesomeIcon icon="fa-regular fa-indian-rupee-sign" /> */}
+          <FontAwesomeIcon icon={faIndianRupeeSign}/>
+          <span className="siPrice">{item.cheapestPrice}</span>
+          </div>
           <span className="siTaxOp">Includes taxes and fees</span>
           <Link to={`/hotels/${item._id}`}>
           <button className="siCheckButton">See availability</button>

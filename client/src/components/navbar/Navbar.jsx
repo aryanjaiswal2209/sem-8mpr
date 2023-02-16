@@ -15,7 +15,7 @@ const Navbar = () => {
         {user ? 
         (
         <>
-        <p>{user.username}</p>
+        <p>Welcome {user.username}</p>
           <div className="navItems">
           <Link to="/login">
           <button className="navButton">Logout</button>
