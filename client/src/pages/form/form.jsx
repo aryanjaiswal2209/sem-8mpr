@@ -1,8 +1,10 @@
 import { HiInformationCircle } from "react-icons/hi";
-import React, {useRef } from "react";
+import React, {useRef, useState } from "react";
 import Webcam from "react-webcam";
 import './form.css';
 import axios from "../../axios"
+import {Link } from "react-router-dom"
+import validator from 'validator'
 
 const videoConstraints = {
   width: 440,
@@ -29,14 +31,29 @@ const Form = () => {
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0])
   }
-
+  const [formError,setFormError]=useState({
+    zipError:'',
+    aadharError:''
+})
+const {zipError,aadharError}=formError;
+  const onSubmit = async e => {
+    e.preventDefault();
+    if (validator.isEmpty(panNumber)){
+       // setFormError({...formError,zipError:"Please enter pin code."})
+       setFormError(prevState=>{return{...prevState,zipError:"Please enter pin code."}} )
+    }
+    if (validator.isEmpty(aadharNumber)){
+       setFormError(prevState=>{return{...prevState,aadharError:"Please enter aadhar number."}} )
+    }
+}
+  
   const handleSubmit = async(event) => {
     event.preventDefault()
     const formData = new FormData();
     formData.append("image", selectedFile);
     formData.append("aadharNumber", aadharNumber);
     formData.append("panNumber", panNumber);
-    // console.log(formData.values());
+    
     try {
       const response = await axios({
         method: "post",
@@ -48,11 +65,12 @@ const Form = () => {
     } catch(error) {
       console.log(error)
     }
+    
   }
 
   return (
     <>    
-      <div class="form-group">
+      <div class="form-group" onSubmit={e=>onSubmit(e)}>
 		    	<label for="exampleInputAadharCard">Aadhar Card No.</label>
 		    	<input type="text" value={aadharNumber} onChange={(e)=>{
             setaadharNumber(e.target.value) 
@@ -96,13 +114,14 @@ const Form = () => {
       <div class ="button">
       <button onClick={capturePhoto}>Capture</button>
       <button onClick={() => setUrl(null)}>Refresh</button>
-      <button class="Save">Save</button>
+      {/* <button class="Save">Save</button> */}
       </div>
       <div class="form-group">
 		    	<label for="exampleImageUpload" >Upload your Image!</label>
           <input type="file" multiple accept="image/*"  onChange={handleFileSelect} />
      </div>
-     <button class="Save" onClick={handleSubmit} >Submit</button>
+     <button to="/" class="Save" onClick={handleSubmit} >Submit</button>
+     
     </div>
     </>
   );

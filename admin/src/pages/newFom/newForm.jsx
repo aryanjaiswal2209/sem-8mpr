@@ -24,11 +24,19 @@ const New = ({  }) => {
             {        
             requests.map((request)=>{
                 return (
-                    <div>
-                    <p>{request.aadharNumber}</p>
+                    
+                    <div className="requestData">
+                    <p> Username : {request.user.username}</p>
+                    <p>Aadhar Number : {request.aadharNumber}</p>
+                    <p>Pan Number : {request.panNumber}</p>
                     <img src={request.image}></img>
-                    <p>{request.panNumber}</p>
+                    <div>
+                  
+                    <button to="/">Aceept</button>
+                    <button to="/">Reject</button>
                     </div>
+                    </div>
+                    
                 )
             })            
             }
